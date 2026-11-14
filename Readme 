@@ -1,0 +1,47 @@
+Bank Management System (C)
+
+A simple Bank Management System developed using the C programming language.
+
+About the Project
+
+This is my first GitHub project. It is a menu-driven banking application that performs basic banking operations using C programming concepts.
+
+Features
+
+- Create a new bank account
+- Deposit money
+- Withdraw money
+- Check account balance
+- Exit the application
+
+Technologies Used
+
+- C Programming
+- Standard Input/Output ("stdio.h")
+- Arrays
+- Loops
+- Switch Statements
+- Conditional Statements
+
+Account Details
+
+- Maximum Accounts: 100
+- Starting Account Number: 1001
+- Account Information: Account Number, Name and Balance
+
+How to Run
+
+1. Download the "Bank.c" file.
+2. Open it in a C compiler.
+3. Compile and run the program.
+4. Select an option from the banking menu.
+
+Learning Purpose
+
+This project was created to improve my understanding of C programming, arrays, loops, functions and basic programming logic.
+
+Author
+
+Aditya Rai
+
+Project: My First GitHub Repository
