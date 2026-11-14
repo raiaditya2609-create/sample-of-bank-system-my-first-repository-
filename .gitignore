@@ -1,55 +1,140 @@
-# Prerequisites
-*.d
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+#include <stdio.h>
 
-# Linker output
-*.ilk
-*.map
-*.exp
+#define MAX_ACCOUNTS 100
 
-# Precompiled Headers
-*.gch
-*.pch
+int main() {
+    int accNo[MAX_ACCOUNTS];
+    char name[MAX_ACCOUNTS][50];
+    double balance[MAX_ACCOUNTS];
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+    int count = 0;
+    int nextNo = 1001;
+    int choice;
+    int i, acc, found;
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+    while (1) {
+        printf("\n===== BANK MANAGEMENT SYSTEM =====\n");
+        printf("1. Create Account\n");
+        printf("2. Deposit Money\n");
+        printf("3. Withdraw Money\n");
+        printf("4. Check Balance\n");
+        printf("5. Exit\n");
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+        switch (choice) {
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+            case 1:
+                if (count < MAX_ACCOUNTS) {
+                    accNo[count] = nextNo;
 
-# debug information files
-*.dwo
+                    printf("Enter account holder name: ");
+                    scanf(" %[^\n]", name[count]);
+
+                    printf("Enter initial balance: ");
+                    scanf("%lf", &balance[count]);
+
+                    printf("Account created successfully!\n");
+                    printf("Account Number: %d\n", accNo[count]);
+
+                    count++;
+                    nextNo++;
+                } else {
+                    printf("Account limit reached!\n");
+                }
+                break;
+
+            case 2:
+                printf("Enter account number: ");
+                scanf("%d", &acc);
+
+                found = 0;
+
+                for (i = 0; i < count; i++) {
+                    if (accNo[i] == acc) {
+                        double amount;
+                        printf("Enter deposit amount: ");
+                        scanf("%lf", &amount);
+
+                        if (amount > 0) {
+                            balance[i] += amount;
+                            printf("Amount deposited successfully!\n");
+                        } else {
+                            printf("Invalid amount!\n");
+                        }
+
+                        found = 1;
+                        break;
+                    }
+                }
+
+                if (found == 0) {
+                    printf("Account not found!\n");
+                }
+                break;
+
+            case 3:
+                printf("Enter account number: ");
+                scanf("%d", &acc);
+
+                found = 0;
+
+                for (i = 0; i < count; i++) {
+                    if (accNo[i] == acc) {
+                        double amount;
+                        printf("Enter withdrawal amount: ");
+                        scanf("%lf", &amount);
+
+                        if (amount > 0 && amount <= balance[i]) {
+                            balance[i] -= amount;
+                            printf("Amount withdrawn successfully!\n");
+                        } else {
+                            printf("Invalid amount or insufficient balance!\n");
+                        }
+
+                        found = 1;
+                        break;
+                    }
+                }
+
+                if (found == 0) {
+                    printf("Account not found!\n");
+                }
+                break;
+
+            case 4:
+                printf("Enter account number: ");
+                scanf("%d", &acc);
+
+                found = 0;
+
+                for (i = 0; i < count; i++) {
+                    if (accNo[i] == acc) {
+                        printf("Account Holder: %s\n", name[i]);
+                        printf("Account Number: %d\n", accNo[i]);
+                        printf("Available Balance: %.2lf\n", balance[i]);
+
+                        found = 1;
+                        break;
+                    }
+                }
+
+                if (found == 0) {
+                    printf("Account not found!\n");
+                }
+                break;
+
+            case 5:
+                printf("Thank you for using our banking system!\n");
+                return 0;
+
+            default:
+                printf("Invalid choice!\n");
+        }
+    }
+
+    return 0;
+}
+
